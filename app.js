@@ -6,7 +6,7 @@ let isRunning = false;
 function startSpeedrun() {
     document.getElementById('startScreen').style.display = 'none';
     document.getElementById('mainContent').style.display = 'block';
-    document.getElementById('timerOverlay').style.display = 'flex';
+    document.getElementById('timerContainer').style.display = 'flex';
 
     startTime = Date.now();
     isRunning = true;
@@ -30,18 +30,19 @@ function stopTimer() {
 
 function resetSpeedrun() {
     // Clear the timer
-    clearInterval(timerInterval);
-    isRunning = false;
-
-    // Reset the timer display
-    document.getElementById('timerDisplay').textContent = '00:00.00';
+    if (timerInterval) {
+        clearInterval(timerInterval);
+    }
 
     // Reset the form
     document.Formular.reset();
 
-    // Restart the timer immediately without showing the start screen
+    // Restart the timer immediately
     startTime = Date.now();
     isRunning = true;
+
+    // Update display immediately and then start interval
+    updateTimer();
     timerInterval = setInterval(updateTimer, 10);
 }
 
