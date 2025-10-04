@@ -80,6 +80,12 @@ function showCourseList() {
     document.getElementById('startScreen').style.display = 'none';
     document.getElementById('courseListScreen').style.display = 'block';
 
+    // Show header on course list screen
+    const header = document.querySelector('.pageheader');
+    if (header) {
+        header.style.display = 'block';
+    }
+
     // Render course list with one random course
     renderCourseList();
 
@@ -304,7 +310,25 @@ function startBooking(courseIndex) {
     document.getElementById('courseListScreen').style.display = 'none';
     document.getElementById('mainContent').style.display = 'block';
 
+    // Add scroll listener for navbar shrinking
+    window.addEventListener('scroll', handleNavbarScroll);
+
+    // Scroll to top when form appears
+    window.scrollTo(0, 0);
+
     // Timer continues running (already started when course list appeared)
+}
+
+// Handle navbar shrinking on scroll
+function handleNavbarScroll() {
+    const header = document.querySelector('.pageheader');
+    if (!header) return;
+
+    if (window.scrollY > 50) {
+        header.classList.add('scrolled');
+    } else {
+        header.classList.remove('scrolled');
+    }
 }
 
 function updateTimer() {
@@ -331,6 +355,15 @@ function resetSpeedrun() {
     // Reset the form
     HTMLFormElement.prototype.reset.call(document.Formular);
 
+    // Remove scroll listener
+    window.removeEventListener('scroll', handleNavbarScroll);
+
+    // Reset header state
+    const header = document.querySelector('.pageheader');
+    if (header) {
+        header.classList.remove('scrolled');
+    }
+
     // Go back to course list
     document.getElementById('mainContent').style.display = 'none';
     document.getElementById('courseListScreen').style.display = 'block';
@@ -351,6 +384,15 @@ function finalRestart() {
 
     // Reset to start screen
     document.getElementById('startScreen').style.display = 'flex';
+
+    // Remove scroll listener
+    window.removeEventListener('scroll', handleNavbarScroll);
+
+    // Reset header state
+    const header = document.querySelector('.pageheader');
+    if (header) {
+        header.classList.remove('scrolled');
+    }
 
     // Reset the form
     HTMLFormElement.prototype.reset.call(document.Formular);
@@ -478,6 +520,12 @@ function showFinalTimer() {
     // Hide main content and timer
     document.getElementById('mainContent').style.display = 'none';
     document.getElementById('timerContainer').style.display = 'none';
+
+    // Hide header on final screen
+    const header = document.querySelector('.pageheader');
+    if (header) {
+        header.style.display = 'none';
+    }
 
     // Show final timer screen
     document.getElementById('finalTimerScreen').style.display = 'flex';

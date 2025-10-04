@@ -4,6 +4,17 @@ BODY, TD, B {
     FONT-SIZE: 9pt;
 }
 
+/* Remove all default body padding/margin */
+body {
+    padding: 0 !important;
+    margin: 0 !important;
+}
+
+/* Hide header by default - only show on specific screens */
+.pageheader {
+    display: none !important;
+}
+
 .anm_meldung {
     COLOR: #000;
     font-weight: bold;
@@ -41,12 +52,19 @@ input.anm_button {
     align-items: center;
     min-height: 100vh;
     background: #f8f9fa;
+    padding: 0;
+    margin: 0;
 }
 
-/* Hide any headers that might leak into start screen */
-#startScreen .pageheader,
-#startScreen header {
+/* Show header on course list and main content, hide on start/final */
+body:has(#startScreen[style*="display: flex"]) .pageheader,
+body:has(#finalTimerScreen[style*="display: flex"]) .pageheader {
     display: none !important;
+}
+
+body:has(#courseListScreen[style*="display: block"]) .pageheader,
+body:has(#mainContent[style*="display: block"]) .pageheader {
+    display: block !important;
 }
 
 .start-content {
@@ -191,19 +209,21 @@ input.anm_button {
     min-height: 100vh;
 }
 
-#courseListScreen .pageheader {
-    /* First .pageheader rule */
-    height: 55px;
-    box-shadow: rgba(0, 0, 0, 0.4) 0px 0px 10px 0px;
-    transition: height 0.5s;
-    background-color: #fff;
-    z-index: 10;
-    /* Second .pageheader rule (overrides height) */
+/* Default header styling for course list */
+body:has(#courseListScreen[style*="display: block"]) .pageheader {
     height: 146px;
+    box-shadow: rgba(0, 0, 0, 0.4) 0px 0px 10px 0px;
+    transition: height 0.3s ease;
+    background-color: #fff;
+    z-index: 1030;
     background-image: linear-gradient(90deg, #fff, #f6f6f6);
     background-size: 100% 45%;
     background-repeat: no-repeat;
     background-position: top right;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
 }
 
 #courseListScreen .fixed-top {
@@ -246,7 +266,48 @@ input.anm_button {
     display: none;
     padding: 20px;
     padding-bottom: 50px;
+    padding-top: 146px; /* Match header height */
     background: white;
+    min-height: 100vh;
+}
+
+/* Header in main content screen - same as course list by default */
+body:has(#mainContent[style*="display: block"]) .pageheader {
+    height: 146px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1030;
+    background-color: #fff;
+    background-image: linear-gradient(90deg, #fff, #f6f6f6);
+    background-size: 100% 45%;
+    background-repeat: no-repeat;
+    background-position: top right;
+    box-shadow: rgba(0, 0, 0, 0.4) 0px 0px 10px 0px;
+    transition: height 0.3s ease, background 0.3s ease;
+}
+
+/* Scrolled state - much smaller header (only applies to mainContent screen) */
+body:has(#mainContent[style*="display: block"]) .pageheader.scrolled {
+    height: 55px;
+    background-image: none;
+}
+
+body:has(#mainContent[style*="display: block"]) .pageheader.scrolled .logoarea_logo img {
+    max-height: 35px !important;
+    transition: all 0.3s ease;
+}
+
+body:has(#mainContent[style*="display: block"]) .pageheader.scrolled .logoarea_claim {
+    font-size: 10px;
+    transition: font-size 0.3s ease;
+}
+
+body:has(#mainContent[style*="display: block"]) .pageheader.scrolled .naviarea {
+    transform: scale(0.7);
+    transform-origin: top right;
+    transition: transform 0.3s ease;
 }
 
 /* Ensure form displays properly */
@@ -261,6 +322,8 @@ input.anm_button {
     align-items: center;
     min-height: 100vh;
     background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
+    padding: 0;
+    margin: 0;
 }
 
 .final-timer-content {
