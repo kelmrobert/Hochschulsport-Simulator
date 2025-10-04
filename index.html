@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Expires" content="0">
+    <meta http-equiv="cache-control" content="no-cache">
+    <meta http-equiv="Pragma" content="no-cache">
+    <title>HSP Anmeldung Speedrun</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<!-- Start Screen -->
+<div id="startScreen">
+    <div class="start-content">
+        <div class="trophy-icon">🏆</div>
+        <h1>Hochschulsport Speedrun</h1>
+        <p class="subtitle">Wie schnell kannst du das Formular ausfüllen?</p>
+        <button id="startBtn" onclick="startSpeedrun()">
+            <span class="btn-icon">▶</span>
+            START
+        </button>
+        <div class="instructions">
+            <p>⚡ Fülle alle Felder korrekt aus</p>
+            <p>⏱️ Versuche deinen Rekord zu brechen</p>
+            <p>🎯 Jedes Feld muss validiert werden</p>
+        </div>
+    </div>
+</div>
+
+<!-- Timer Overlay -->
+<div id="timerOverlay">
+    <div id="timerDisplay">00:00.00</div>
+    <button id="resetBtn" onclick="resetSpeedrun()">↻ Neustart</button>
+</div>
+
+<!-- Main Form Content -->
+<div id="mainContent">
+    <form action="#" method="post" name="Formular" onsubmit="return chkFormular()">
+        <input type="hidden" name="Kursid" value="199807">
+        <input type="hidden" name="Kursnr" value="801904154">
+        <input type="hidden" name="Passwort" value="">
+        <input type="hidden" name="Termin" value="">
+        <input type="hidden" name="formnr" value="">
+        <input type="hidden" name="a75b133343af94ad654b5be1a8b2000a" value="::37::AL::59::SXCH::96::::10::">
+        <input type="hidden" name="Phase" value="3">
+        <div align="center">
+            <img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" alt="TU-Sport">
+            <br><br>
+            <table border="0" cellpadding="3" cellspacing="1" width="480">
+                <tbody><tr>
+                    <td colspan="2" class="anm_head">
+                        Boxen für Frauen, 801904154
+                    </td>
+                </tr>
+                <tr>
+                    <td><b>Zielgruppe:</b></td>		<td>Level 2-3</td>
+                </tr>
+                <tr>
+                    <td valign="top"><b>Termin:</b></td>
+                    <td><b>Fr  19:00-20:30</b>&nbsp;&nbsp;&nbsp; TU-Sportzentrum Dovestraße 6 / D<br></td></tr>
+                <tr>
+                    <td><b>Zeitraum:</b></td>		<td>24.10.2025-06.02.2026</td>
+                </tr>
+                <tr>
+                    <td valign="top"><b>Kursentgelt:</b></td>
+                    <td>31 € für Studierende,
+                        47 € für Beschäftigte, 47 € für Alumni der TU, 62 € für Externe<br>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2">
+                        <hr>
+                        <div class="anm_meldung">
+                            - noch ausreichend freie Plätze in diesem Kurs -<br><br>- die Anmeldung für diesen Kurs ist nur für weibliche Teilnehmer möglich ! -	<br><hr><br>kein Kursbetrieb  Fr. 19.12.25 - einschließlich Mo 05.01.26 (TU Schließzeit)</div><br>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2" class="anm_head">
+                        Anmeldung
+                    </td>
+                </tr>
+                <tr>
+                    <td width="85">&nbsp;</td><td align="right">* notwendige Angaben</td>
+                </tr>
+                <tr>
+                    <td valign="top" width="85"> Geschlecht:* </td>
+                    <td>
+                        <table border="0" cellspacing="0">
+                            <tbody><tr>
+                                <td colspan="2">
+                                    <label for="weiblich"><input type="radio" name="Geschlecht" value="W" id="weiblich"> weiblich</label>&nbsp;&nbsp;&nbsp;
+
+                                    <label for="maennlich"><input type="radio" name="Geschlecht" value="M" id="maennlich"> männlich</label>&nbsp;&nbsp;&nbsp;
+
+                                    <label for="sdiv"><input type="radio" name="Geschlecht" value="D" id="sdiv"> divers</label>&nbsp;&nbsp;&nbsp;
+
+                                    <label for="ska"><input type="radio" name="Geschlecht" value="X" id="ska"> keine Angabe</label>
+                                </td>
+                            </tr>
+                            </tbody></table>
+                    </td>
+                </tr>
+                <tr>
+                    <td width="85">Vorname:*</td>
+                    <td>
+                        <input type="text" size="29" maxlength="100" name="Vorname" style="width: 363px" title="geben Sie hier bitte ihren Vornamen vollständig ein">
+                    </td>
+                </tr>
+                <tr>
+                    <td width="85">Familienname:*</td>
+                    <td>
+                        <input type="text" size="29" maxlength="100" name="Name" style="width: 363px" title="geben Sie hier bitte ihren Nachnamen vollständig ein">
+                    </td>
+                </tr>
+                <tr>
+                    <td width="85" nowrap="">Straße Nr:*</td>
+                    <td>
+                        <input type="text" size="29" maxlength="100" name="Strasse" style="width: 363px">
+                    </td>
+                </tr>
+                <tr>
+                    <td width="85">PLZ Ort:*</td>
+                    <td>
+                        <input type="text" size="29" maxlength="100" name="Ort" style="width: 363px">
+                    </td>
+                </tr>
+                <tr>
+                    <td valign="top" width="85">Status:*</td>
+                    <td>
+                        <select name="Statusorig" size="1" style="width: 363px">
+                            <option value=""> Bitte wählen Sie aus</option><option class="req1" value="S-TU">Student*in der Technischen Universität Berlin</option><option class="req0" value="vorl. TU">vorläufige*r Student*in der Technischen Universität Berlin</option><option class="req1" value="S-Akkon">Student*in der Akkon-Hochschule</option><option class="req1" value="S-ASH">Student*in der Alice-Salomon Hochschule</option><option class="req1" value="S-BHT">Student*in der Berliner Hochschule für Technik</option><option class="req1" value="S-BSB">Student*in der Business School Berlin</option><option class="req1" value="S-DFFB">Student*in der Deutschen Film- und Fernsehakademie</option><option class="req1" value="S-ESCP">Student*in der Europäischen Wirtschaftshochschule</option><option class="req1" value="S-EHB">Student*in der Evangelischen Hochschule</option><option class="req1" value="S-ESMT">Student*in der Berlin European School of Management and Technology</option><option class="req1" value="S-FU">Student*in der Freien Universität Berlin</option><option class="req1" value="S-GUC">Student*in der German International University</option><option class="req1" value="S-HDPK">Student*in der Hochschule der populären Künste</option><option class="req1" value="S-Hertie">Student*in der Hertie School of Governance (Hertie)</option><option class="req1" value="S-HMKW">Student*in der Hochschule für Medien, Kommunikation</option><option class="req1" value="S-HfM">Student*in der Hochschule für Musik Hans Eisler</option><option class="req1" value="S-HfS">Student*in der Hochschule für Schauspielkunst</option><option class="req1" value="S-HTW">Student*in der Hochschule für Technik und Wirtschaft Berlin</option><option class="req1" value="S-HU">Student*in der Humbolt-Universität zu Berlin</option><option class="req1" value="S-HWR">Student*in der Hochschule für Wirtschaft und Recht</option><option class="req1" value="S-IB">Student*in der IB-Hochschule</option><option class="req1" value="S-IPU">Student*in der International Psychoanalytic University Berlin</option><option class="req1" value="S-IUBH">Student*in der IU Internationalen Hochschule</option><option class="req1" value="S-KHSB">Student*in der Katholische Hochschule Sozialwesen</option><option class="req1" value="S-KHB">Student*in der Kunsthochschule Weißensee</option><option class="req1" value="S-MAC">Student*in der Hochschule Macromedia</option><option class="req1" value="S-MD.H">Student*in der Mediadesign Hochschule</option><option class="req1" value="S-MSB">Student*in der Medical School Berlin</option><option class="req1" value="S-PHB">Student*in der Psychologischen Hochschule Berlin</option><option class="req1" value="S-SRH">Student*in der SRH Hochschule</option><option class="req1" value="S-UDK">Student*in der Universität der Künste</option><option class="req2" value="B-TU">Beschäftigte*r der Technischen Universität Berlin</option><option class="req2" value="B-Akkon">Beschäftigte*r der Akkon-Hochschule</option><option class="req2" value="B-ASH">Beschäftigte*r der Alice-Salomon Hochschule</option><option class="req2" value="B-BHT">Beschäftigte*r der Berliner Hochschule für Technik</option><option class="req2" value="B-BSB">Beschäftigte*r der Business School Berlin</option><option class="req2" value="B-DFFB">Beschäftigte*r der Deutschen Film- und Fernsehakademie</option><option class="req2" value="B-ESCP">Beschäftigte*r der Europäischen Wirtschaftshochschule</option><option class="req2" value="B-EHB">Beschäftigte*r der Evangelischen Hochschule</option><option class="req2" value="B-ESMT">Beschäftigte*r der Berlin European School of Management and Technology</option><option class="req2" value="B-FU">Beschäftigte*r der Freien Universität Berlin</option><option class="req2" value="B-GUC">Beschäftigte*r der German International University</option><option class="req2" value="B-HDPK">Beschäftigte*r der Hochschule der populären Künste</option><option class="req2" value="B-Hertie">Beschäftigte*r der Hertie School of Governance (Hertie)</option><option class="req2" value="B-HMKW">Beschäftigte*r der Hochschule für Medien, Kommunikation</option><option class="req2" value="B-HfM">Beschäftigte*r der Hochschule für Musik Hans Eisler</option><option class="req2" value="B-HfS">Beschäftigte*r der Hochschule für Schauspielkunst</option><option class="req2" value="B-HTW">Beschäftigte*r der Hochschule für Technik und Wirtschaft Berlin</option><option class="req2" value="B-HU">Beschäftigte*r der Humbolt-Universität zu Berlin</option><option class="req2" value="B-HWR">Beschäftigte*r der Hochschule für Wirtschaft und Recht</option><option class="req2" value="B-IB">Beschäftigte*r der IB-Hochschule</option><option class="req2" value="B-IPU">Beschäftigte*r der International Psychoanalytic University Berlin</option><option class="req2" value="B-IUBH">Beschäftigte*r der IU Internationalen Hochschule</option><option class="req2" value="B-KHSB">Beschäftigte*r der Katholische Hochschule Sozialwesen</option><option class="req2" value="B-KHB">Beschäftigte*r der Kunsthochschule Weißensee</option><option class="req2" value="B-MAC">Beschäftigte*r der Hochschule Macromedia</option><option class="req2" value="B-MD.H">Beschäftigte*r der Mediadesign Hochschule</option><option class="req2" value="B-MSB">Beschäftigte*r der Medical School Berlin</option><option class="req2" value="B-PHB">Beschäftigt*er der Psychologischen Hochschule Berlin</option><option class="req2" value="B-SRH">Beschäftigte*r der SRH Hochschule</option><option class="req2" value="B-UDK">Beschäftigte*r der Universität der Künste</option><option class="req0" value="Azubi-TU">Auszubildende*r TU Berlin</option><option class="req0" value="Azubi-BH">Auszubildende*r anderer Berliner Hochschulen</option><option class="req0" value="Azubi-e">Auszubildende*r (extern)</option><option class="req0" value="S-aH">Student*in einer anderen Hochschule</option><option class="req0" value="Schüler">Schüler*innen mit Ausweis</option><option class="req0" value="TU-Alumni">registrierte Alumni der TU Berlin</option><option class="req0" value="BANA">BANA Gasthörer*innen TU Berlin</option><option class="req0" value="Freunde ">Mitglieder der Freunde der TU Berlin</option><option class="req0" value="Extern">Externe*r
+                        </option></select>
+                    </td>
+                </tr>
+                <tr>
+                    <td valign="top" width="85"> &nbsp;</td>
+                    <td>
+                        <table style="width:363px;">
+                            <tbody><tr>
+                                <td colspan="3" nowrap="">
+                                    <b>- bei Studierenden:</b>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td width="20">&nbsp;</td>
+                                <td>Matrikel-Nr.:*</td>
+                                <td align="right"><input type="text" size="10" style="width: 200px" maxlength="12" name="Matnr"></td>
+                            </tr>
+                            <tr>
+                                <td colspan="3" nowrap="">
+                                    <b>- bei Beschäftigten:</b>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td width="20">&nbsp;</td>
+                                <td>dienstl. Telefonnr:*</td>
+                                <td align="right"><input type="text" size="10" style="width: 200px" maxlength="100" name="Institut"></td>
+                            </tr>
+
+                            </tbody></table>
+                    </td>
+                </tr>
+                <tr>
+                    <td width="85" valign="baseline">E-Mail:*</td>
+                    <td>
+                        <input type="text" size="29" maxlength="100" name="Mail" style="width: 363px">
+                    </td>
+                </tr>
+                <tr>
+                    <td width="85">Telefon:*</td>
+                    <td>
+                        <input type="text" size="20" maxlength="40" name="Tel">
+                    </td>
+                </tr>
+                <tr>
+                    <td width="85">Geburtsdatum:*</td>
+                    <td>
+                        <input type="text" maxlength="10" name="Geburtsdatum" size="10" title="geben Sie hier bitte ihr Geburtsdatum ein"> (TT.MM.JJJJ)
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2">&nbsp;</td>
+                </tr>
+                <tr>
+                    <td colspan="2" class="anm_head">
+                        Newsletter
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2">
+                        <input type="checkbox" name="Newsletter" value="ja"> Ich möchte vom Hochschulsport per Email Informationen zu Angeboten und Neuigkeiten erhalten
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2">&nbsp;</td>
+                </tr>
+                <tr>
+                    <td colspan="2" class="anm_head">
+                        Zahlung
+                    </td>
+                </tr>
+                <tr>
+                    <td valign="bottom" colspan="2"><br>
+                        <font color="#aaaaaa">Konto, von dem das Kursentgelt per Lastschrift einmalig abgebucht werden soll:</font>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        IBAN:&nbsp;
+                    </td>
+                    <td>
+                        <input type="text" size="29" maxlength="40" name="iban">
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        BIC:
+                    </td>
+                    <td>
+                        <input type="text" size="29" maxlength="20" name="bic">
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        Kontoinhaber:
+                    </td>
+                    <td>
+                        <input type="text" size="29" maxlength="50" name="Kontoinh" style="width: 290px" value="nur ändern, falls nicht mit Teilnehmer identisch">
+                    </td>
+
+                </tr>
+                <tr>
+                    <td colspan="2">
+                        <hr>
+                        <input type="checkbox" name="BuchBed" value="1"> Die
+                        <a href="#" onclick="return false;">
+                            Anmelde- und Teilnahmebedingungen</a> habe ich gelesen und akzeptiert!<br>
+                        Mir ist bekannt, daß die Daten dieser Anmeldung elektronisch gespeichert werden.<br>
+                        Mit Angabe meiner Kontodaten willige ich in das Lastschriftverfahren ein.
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2">&nbsp;</td>
+                </tr>
+                <tr>
+                    <td>
+                        <input class="anm_button" type="reset" value="abbrechen" name="reset">
+                    </td>
+                    <td align="right">
+                        <input class="anm_button" type="submit" value="verbindlich anmelden" name="submit">
+                    </td>
+                </tr>
+                </tbody></table>
+        </div>
+    </form>
+</div>
+
+<script src="app.js"></script>
+</body>
+</html>
