@@ -336,9 +336,23 @@ function updateTimer() {
     const minutes = Math.floor(elapsed / 60000);
     const seconds = Math.floor((elapsed % 60000) / 1000);
     const milliseconds = Math.floor((elapsed % 1000) / 10);
+    const totalSeconds = Math.floor(elapsed / 1000);
 
+    // Update timer display
     document.getElementById('timerDisplay').textContent =
         `${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}.${String(milliseconds).padStart(2, '0')}`;
+
+    // Change color based on elapsed time
+    const timerDisplay = document.getElementById('timerDisplay');
+    if (totalSeconds < 30) {
+        timerDisplay.style.color = '#00ff88'; // Green
+    } else if (totalSeconds < 42) {
+        timerDisplay.style.color = '#ffeb3b'; // Yellow
+    } else if (totalSeconds < 55) {
+        timerDisplay.style.color = '#ff9800'; // Orange
+    } else {
+        timerDisplay.style.color = '#f44336'; // Red
+    }
 }
 
 function stopTimer() {
@@ -514,6 +528,7 @@ function showFinalTimer() {
     const minutes = Math.floor(elapsed / 60000);
     const seconds = Math.floor((elapsed % 60000) / 1000);
     const milliseconds = Math.floor((elapsed % 1000) / 10);
+    const totalSeconds = Math.floor(elapsed / 1000);
 
     const finalTime = `${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}.${String(milliseconds).padStart(2, '0')}`;
 
@@ -530,4 +545,35 @@ function showFinalTimer() {
     // Show final timer screen
     document.getElementById('finalTimerScreen').style.display = 'flex';
     document.getElementById('finalTimerDisplay').textContent = finalTime;
+
+    // Update message and styling based on time
+    const finalScreen = document.getElementById('finalTimerScreen');
+    const checkmark = finalScreen.querySelector('.checkmark-icon');
+    const heading = finalScreen.querySelector('h1');
+    const subtitle = finalScreen.querySelector('.final-subtitle');
+    const timerDisplay = document.getElementById('finalTimerDisplay');
+
+    if (totalSeconds >= 55) {
+        // Too slow - failure state
+        checkmark.textContent = '✗';
+        heading.textContent = 'Du warst zu langsam!';
+        subtitle.textContent = 'Du hast keinen Platz bekommen';
+        checkmark.style.color = '#f44336';
+        timerDisplay.style.color = '#f44336';
+    } else {
+        // Success state
+        checkmark.textContent = '✓';
+        heading.textContent = 'Anmeldung erfolgreich!';
+        subtitle.textContent = 'Deine Zeit';
+        checkmark.style.color = '#00ff88';
+
+        // Set timer color based on performance
+        if (totalSeconds < 30) {
+            timerDisplay.style.color = '#00ff88'; // Green - excellent
+        } else if (totalSeconds < 42) {
+            timerDisplay.style.color = '#ffeb3b'; // Yellow - good
+        } else {
+            timerDisplay.style.color = '#ff9800'; // Orange - barely made it
+        }
+    }
 }
