@@ -35,7 +35,7 @@ function resetSpeedrun() {
     }
 
     // Reset the form
-    document.Formular.reset();
+    HTMLFormElement.prototype.reset.call(document.Formular);
 
     // Restart the timer immediately
     startTime = Date.now();
