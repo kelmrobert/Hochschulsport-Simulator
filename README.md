@@ -3,7 +3,7 @@
 > **Du jagst jedes Semester vergeblich einem Platz in deinem Traumkurs hinterher?**
 > Dann trainiere hier, um nächstes Mal ganz sicher einen Platz zu bekommen!
 
-## Was ist das?
+## Über das Projekt
 
 Der Hochschulsport-Simulator ist ein Speedrun-Trainer für die TU Berlin Hochschulsport-Anmeldung. 
 Wenn die Sportkurse innerhalb von kürzester Zeit ausgebucht sind, zählt jede Millisekunde.
