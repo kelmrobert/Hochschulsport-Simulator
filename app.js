@@ -1,9 +1,101 @@
+// Course Data
+const courses = [
+    {
+        name: "Boxen für Frauen",
+        courseId: "801904154",
+        targetGroup: "Level 2-3",
+        schedule: "Fr 19:00-20:30",
+        location: "TU-Sportzentrum Dovestraße 6 / D",
+        period: "24.10.2025-06.02.2026",
+        pricing: "31 € für Studierende, 47 € für Beschäftigte, 47 € für Alumni der TU, 62 € für Externe",
+        description: "noch 1 freier Platz in diesem Kurs",
+        note: "kein Kursbetrieb Fr. 19.12.25 - einschließlich Mo 05.01.26 (Schließzeit)"
+    },
+    {
+        name: "Yoga - Hatha",
+        courseId: "801901234",
+        targetGroup: "Alle Level",
+        schedule: "Mo 18:00-19:30",
+        location: "TU-Hauptgebäude, Raum H 3004",
+        period: "21.10.2025-03.02.2026",
+        pricing: "25 € für Studierende, 40 € für Beschäftigte, 40 € für Alumni der TU, 55 € für Externe",
+        description: "noch 3 freie Plätze in diesem Kurs",
+        note: "kein Kursbetrieb 22.12.25 - einschließlich 05.01.26 (Weihnachtspause)"
+    },
+    {
+        name: "Klettern Anfänger",
+        courseId: "801905678",
+        targetGroup: "Anfänger ohne Vorkenntnisse",
+        schedule: "Mi 17:00-19:00",
+        location: "Kletterhalle TU Berlin, Marchstraße 12",
+        period: "23.10.2025-05.02.2026",
+        pricing: "45 € für Studierende, 65 € für Beschäftigte, 65 € für Alumni der TU, 85 € für Externe",
+        description: "noch 2 freie Plätze in diesem Kurs",
+        note: "Materialleihe inklusive"
+    },
+    {
+        name: "Schwimmen - Techniktraining",
+        courseId: "801902345",
+        targetGroup: "Fortgeschrittene",
+        schedule: "Di 20:00-21:00",
+        location: "Schwimmhalle Charlottenburg",
+        period: "22.10.2025-04.02.2026",
+        pricing: "35 € für Studierende, 50 € für Beschäftigte, 50 € für Alumni der TU, 70 € für Externe",
+        description: "Kurs voll - Warteliste verfügbar",
+        note: "Bitte Schwimmbrille und Badekappe mitbringen"
+    },
+    {
+        name: "Fußball - Mixed",
+        courseId: "801906789",
+        targetGroup: "Alle Level",
+        schedule: "Do 19:00-21:00",
+        location: "Sportplatz Waldschulallee",
+        period: "24.10.2025-06.02.2026",
+        pricing: "20 € für Studierende, 35 € für Beschäftigte, 35 € für Alumni der TU, 50 € für Externe",
+        description: "noch 8 freie Plätze in diesem Kurs",
+        note: "Bei Regen findet das Training in der Halle statt"
+    },
+    {
+        name: "Pilates",
+        courseId: "801903456",
+        targetGroup: "Level 1-2",
+        schedule: "Mi 18:30-20:00",
+        location: "TU-Sportzentrum Dovestraße 6 / A",
+        period: "23.10.2025-05.02.2026",
+        pricing: "28 € für Studierende, 42 € für Beschäftigte, 42 € für Alumni der TU, 60 € für Externe",
+        description: "noch 5 freie Plätze in diesem Kurs",
+        note: "Bitte Matte und Handtuch mitbringen"
+    }
+];
+
+let currentCourse = null;
+
 // Timer Variables
 let startTime = 0;
 let timerInterval = null;
 let isRunning = false;
 
+// Load random course into the form
+function loadRandomCourse() {
+    const randomIndex = Math.floor(Math.random() * courses.length);
+    currentCourse = courses[randomIndex];
+
+    // Update course info in the form
+    document.getElementById('courseName').textContent = currentCourse.name + ', ' + currentCourse.courseId;
+    document.getElementById('targetGroup').textContent = currentCourse.targetGroup;
+    document.getElementById('schedule').innerHTML = '<b>' + currentCourse.schedule + '</b>&nbsp;&nbsp;&nbsp; ' + currentCourse.location;
+    document.getElementById('period').textContent = currentCourse.period;
+    document.getElementById('pricing').textContent = currentCourse.pricing;
+    document.getElementById('courseDescription').innerHTML = '- ' + currentCourse.description + ' -<br> <hr> <br>' + currentCourse.note;
+
+    // Update hidden course ID
+    document.Formular.Kursnr.value = currentCourse.courseId;
+}
+
 function startSpeedrun() {
+    // Load a random course first
+    loadRandomCourse();
+
     document.getElementById('startScreen').style.display = 'none';
     document.getElementById('mainContent').style.display = 'block';
     document.getElementById('timerContainer').style.display = 'flex';
@@ -36,6 +128,9 @@ function resetSpeedrun() {
 
     // Reset the form
     HTMLFormElement.prototype.reset.call(document.Formular);
+
+    // Load a new random course
+    loadRandomCourse();
 
     // Restart the timer immediately
     startTime = Date.now();
