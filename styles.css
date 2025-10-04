@@ -1,0 +1,240 @@
+/* Base Styles */
+BODY, TD, B {
+    FONT-FAMILY: arial, helvetica, sans-serif;
+    FONT-SIZE: 9pt;
+}
+
+.anm_meldung {
+    COLOR: #000;
+    font-weight: bold;
+}
+
+td.anm_head {
+    COLOR: #5E6E87;
+    background-color: #BDC6DE;
+    FONT-SIZE: 12pt;
+    font-weight: bold;
+    padding: 5px;
+    padding-left: 10px;
+}
+
+A:link {
+    COLOR: #0000cc;
+    TEXT-DECORATION: underline;
+}
+
+A:visited {
+    COLOR: #666666;
+    TEXT-DECORATION: underline;
+}
+
+input.anm_button {
+    COLOR: #9D0102;
+    background-color: #ffffff;
+    border: #cccccc 1px solid;
+}
+
+/* Start Screen Styles */
+#startScreen {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    position: relative;
+    overflow: hidden;
+}
+
+#startScreen::before {
+    content: '';
+    position: absolute;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, rgba(255,255,255,0.1) 1px, transparent 1px);
+    background-size: 50px 50px;
+    animation: moveBackground 20s linear infinite;
+}
+
+@keyframes moveBackground {
+    0% {
+        transform: translate(0, 0);
+    }
+    100% {
+        transform: translate(50px, 50px);
+    }
+}
+
+.start-content {
+    position: relative;
+    z-index: 1;
+    text-align: center;
+    padding: 40px;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    border-radius: 30px;
+    border: 2px solid rgba(255, 255, 255, 0.2);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+}
+
+.trophy-icon {
+    font-size: 80px;
+    animation: bounce 2s ease-in-out infinite;
+}
+
+@keyframes bounce {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-20px);
+    }
+}
+
+#startScreen h1 {
+    color: white;
+    font-size: 48px;
+    margin: 20px 0;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+    font-weight: bold;
+}
+
+.subtitle {
+    color: rgba(255, 255, 255, 0.9);
+    font-size: 20px;
+    margin-bottom: 30px;
+    font-weight: 300;
+}
+
+#startBtn {
+    padding: 20px 60px;
+    font-size: 28px;
+    background: white;
+    color: #667eea;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    font-weight: bold;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+    transition: all 0.3s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.btn-icon {
+    font-size: 24px;
+    display: inline-block;
+    transition: transform 0.3s ease;
+}
+
+#startBtn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 25px rgba(0, 0, 0, 0.4);
+    background: linear-gradient(135deg, #fff 0%, #f0f0f0 100%);
+}
+
+#startBtn:hover .btn-icon {
+    transform: translateX(5px);
+}
+
+#startBtn:active {
+    transform: translateY(0);
+}
+
+.instructions {
+    margin-top: 40px;
+    color: white;
+    font-size: 16px;
+    line-height: 1.8;
+}
+
+.instructions p {
+    margin: 10px 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+
+/* Timer Overlay */
+#timerOverlay {
+    display: none;
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    background: rgba(0, 0, 0, 0.85);
+    padding: 20px 30px;
+    border-radius: 15px;
+    z-index: 9999;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+    border: 2px solid rgba(0, 255, 0, 0.3);
+}
+
+#timerDisplay {
+    color: #00ff00;
+    font-size: 36px;
+    font-weight: bold;
+    font-family: 'Courier New', monospace;
+    text-shadow: 0 0 10px #00ff00;
+    letter-spacing: 2px;
+}
+
+#resetBtn {
+    padding: 10px 20px;
+    background: #ff4444;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 14px;
+    transition: all 0.2s;
+    box-shadow: 0 2px 8px rgba(255, 68, 68, 0.4);
+}
+
+#resetBtn:hover {
+    background: #ff6666;
+    transform: scale(1.05);
+}
+
+#resetBtn:active {
+    transform: scale(0.95);
+}
+
+#mainContent {
+    display: none;
+    padding-bottom: 50px;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    #startScreen h1 {
+        font-size: 36px;
+    }
+
+    .subtitle {
+        font-size: 16px;
+    }
+
+    #startBtn {
+        padding: 15px 40px;
+        font-size: 22px;
+    }
+
+    .trophy-icon {
+        font-size: 60px;
+    }
+
+    #timerOverlay {
+        top: 10px;
+        right: 10px;
+        padding: 15px 20px;
+    }
+
+    #timerDisplay {
+        font-size: 28px;
+    }
+}
